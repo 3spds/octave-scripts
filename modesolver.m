@@ -24,7 +24,6 @@ function [e_vec, e_val] = modesolver(vec, mics, order, winsize)
 
 	for i = 1:(order+1)*mics
 		for j = 1:(order+1)*mics
-%			vec([(N - j - (winsize - 1) * mics):mics: (N - j)]) * vec([(N - i - (winsize - 1) * mics):mics: (N - i)])'
 			C(i,j) = vec([(N - j - (winsize - 1) * mics):mics: (N - j)]) * vec([(N - i - (winsize - 1) * mics):mics: (N - i)])';
 		end
 	end
