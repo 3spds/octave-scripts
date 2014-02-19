@@ -23,7 +23,7 @@ try
 	end
 catch
 	err = lasterr;
-	print(err);
+	printf(err);
 	printf("\n");
 end_try_catch
 

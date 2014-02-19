@@ -1,6 +1,6 @@
-function [e_vec, e_val] = modesolver(vec, mics, order, winsize)
-%	MODESOLVER - find the modes of a multichannel signal
-%		[e_vec, e_val] = MODESOLVER(vec, mics, order, winsize)
+function c_n = modal_regression(u1, e_vecs, e_vals, mics, order)
+%	modal_regression - find the modes of a multichannel signal
+%		[e_vec, e_val, expect] = MODESOLVER(vec, mics, order, winsize)
 %		models the multichannel signal as the result of linear transformation T on previous input vectors
 %------------
 %	returns:
@@ -19,26 +19,9 @@ function [e_vec, e_val] = modesolver(vec, mics, order, winsize)
 %		winsize	: the size of the covariance matrix's summation window
 %					computational cost (and perhaps accuracy?) increases considerably with higher values
 %		( <order> + <winsize> ) * <mics> must be less than or equal to the length( vec )
-
-	N = length(vec);
-
-%	find the average from each mic and remove it
-	for i = 1:mics
-		vec([i:mics:N]) = vec([i:mics:N]) - mean(vec([i:mics:N]));
-	end
-%	covariance matrix
-	for i = 1:(order+1)*mics
-		for j = 1:(order+1)*mics
-			C(i,j) = vec([(N - j - (winsize - 1) * mics):mics: (N - j)]) * vec([(N - i - (winsize - 1) * mics):mics: (N - i)])';
-		end
-	end
-%	find pseudoinverse of first kb mics
-	cinv = pinv(C([1:order*mics], [1:order*mics]));
-%	find prediction matrix that best constructs final data block from all previous vectors
-	predictor = (cinv * C([1:order*mics], [order*mics+1:(order+1)*mics]))';
-%	construct the companion matrix
-	matrix = [zeros((order-1)*mics, mics), eye((order-1)*mics)];
-	matrix = [matrix; predictor];
-%	diagonalize
-	[e_vec, e_val] = eig(matrix);
+len = length(u1);
+c_n = zeros(order*mics, len);
+i = 0;
+for i=0:(len-order)
+    c_n(1:order*mics, i+order) = inv(e_vecs) * u1(i+1:mics:order*mics+i)';
 end

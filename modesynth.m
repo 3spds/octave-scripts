@@ -4,7 +4,7 @@ function [vec, lambdas, F] = modesynth(mics, order, winsize, magscale, magshift)
 %		synthesizes randomized multichannel modal behavior
 %------------
 %	returns:
-%		vec		: a vector of length (<winsize> + 1) * <mics>
+%		vec		: a vector of length <winsize> * <mics>
 %		lambdas	: a vector of kb lambdas
 %		F		: a "forcing function" matrix of kb rows and winsize cols
 %------------
@@ -57,7 +57,7 @@ end
 vec = zeros(1, winsize*mics);
 for i=1:mics
 	for j=1:winsize
-		vec((j*mics)+i) = real(bigX(i,j));
+		vec(((j-1)*mics)+i) = real(bigX(i,j));
 	end
 end
 end
