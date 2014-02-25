@@ -1,27 +1,25 @@
 function c_n = modal_regression(u1, e_vecs, e_vals, mics, order)
-%	modal_regression - find the modes of a multichannel signal
-%		[e_vec, e_val, expect] = MODESOLVER(vec, mics, order, winsize)
-%		models the multichannel signal as the result of linear transformation T on previous input vectors
+%	modal_regression - finds modal coefficients
+%		c_n = modal_regression(u1, e_vecs, e_vals, mics, order)
+%		splits the multichannel signal up into modal components, using a previously calculated eigendecomposition
 %------------
 %	returns:
-%		e_vec	: eigenvectors of transformation matrix T
-%					these should correspond to each mode's spatial expression at each microphone
-%					for real signals, this matrix will be complex
-%		e_val	: eigenvalues of transformation matrix T
-%					these should correspond to the complex amplitudes of each mode
+%		c_n	: modal excitation coefficients matrix
+%					these should be complex (given a real signal)
+%                   the dimensions will be <mics> * <order> rows x length(<u1>) columns
 %------------
 %	arguments:
-%		vec	 	: input vector. "unwrapped" from the matrix of inputs
+%		u1	 	: input vector. "unwrapped" from the matrix of inputs
 %					time moves from left to right, in blocks of size <mics>
+%       e_vecs  : eigenvector matrix of u1. can be found using modesolver.m
+%       e_vals  : diagonal eigenvalue matrix matrix of u1. can be found using modesolver.m
 %		mics	: the number of spatially arranged microphones
 %		order	: the order of the linear predictions
 %					computational cost (and perhaps accuracy?) increases considerably with higher values
-%		winsize	: the size of the covariance matrix's summation window
-%					computational cost (and perhaps accuracy?) increases considerably with higher values
-%		( <order> + <winsize> ) * <mics> must be less than or equal to the length( vec )
-len = length(u1);
+
+len = length(u1)/mics;
 c_n = zeros(order*mics, len);
 i = 0;
-for i=0:(len-order)
-    c_n(1:order*mics, i+order) = inv(e_vecs) * u1(i+1:mics:order*mics+i)';
+for i=1:(len-order)
+    c_n(:, i) = inv(e_vecs) * u1(1+mics*(i-1):(order+i-1)*mics)';
 end
