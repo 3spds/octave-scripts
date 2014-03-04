@@ -1,4 +1,4 @@
-function [vec, lambdas, F] = modesynth(mics, order, winsize, magscale, magshift)
+function [vec, lambdas, F, Z, W, R] = modesynth(mics, order, winsize, magscale, magshift)
 %	MODESYNTH - modal synthesis
 %		vec = MODESYNTH(mics, order, winsize)
 %		synthesizes randomized multichannel modal behavior
