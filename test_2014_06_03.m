@@ -12,4 +12,4 @@ fhat = inverse_filter(c, eval);
 rhat = evec_n * fhat;
 rhat = real(rhat(end-mics+1:end, 1:end-order));
 plot([rhat(1, 1:50); f(1, 1+order:50+order)]');
-corr(rhat, r(1, 1+order:end-1))
+corr(rhat, f(1, 1+order:end-1))
