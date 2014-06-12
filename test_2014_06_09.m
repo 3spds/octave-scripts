@@ -19,13 +19,13 @@ h = [h1;h2];
 H = fft2(h);
 
 %% xfade is an angle from 0 - pi, describing the crossfade weights
-xfade = 0;
+xfade = pi;
 
 [xfx, xfy] = pol2cart(xfade, 1);
 xfc = xfx + (xfy*1i);
 
 %% k is a 2d row vector with complex conjugate entries of xfade
-k = [xfc, conj(xfc)*-0.5];
+k = [xfc, 1-xfc];
 
 output = real(ifft(H'*k'))/2;
 

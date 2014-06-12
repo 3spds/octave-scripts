@@ -30,7 +30,7 @@ H = fft2(h);
 [xfx, xfy] = pol2cart(xfade, 1);
 xfc = xfx + (xfy*1i);
 
-%% k is a 2d row vector with complex conjugate entries of xfade
+% k is the "steering" vector. (what happens when this changes over time?)
 %k = [xfc, 1-xfc];
 k = [xfx, xfy];
 
