@@ -1,6 +1,6 @@
 function [vec, lambdas, F, Z, W, R] = modesynth(mics, order, winsize, magscale, magshift)
 %	MODESYNTH - modal synthesis
-%		vec = MODESYNTH(mics, order, winsize)
+%		[vec, lambdas, F, Z, W, R] = MODESYNTH(mics, order, winsize, magscale, magshift)
 %		synthesizes randomized multichannel modal behavior
 %------------
 %	returns:
@@ -59,5 +59,6 @@ for i=1:mics
 	for j=1:winsize
 		vec(((j-1)*mics)+i) = real(bigX(i,j));
 	end
+end
 end
 end

@@ -29,9 +29,9 @@ function [e_vec, e_val] = modesolver_reg(vec, mics, order, winsize, alpha)
 		vec([i:mics:N]) = vec([i:mics:N]) - mean(vec([i:mics:N]));
 	end
 %	covariance matrix
-	for i = 1:(order+1)*mics
-		for j = 1:(order+1)*mics
-			C(i,j) = vec([(N - j - (winsize - 1) * mics):mics: (N - j)]) * vec([(N - i - (winsize - 1) * mics):mics: (N - i)])';
+	for i = 0:((order+1)*mics)-1
+		for j = 0:((order+1)*mics)-1
+			C(i+1,j+1) = vec([(N - j - (winsize - 1) * mics):mics: (N - j)]) * vec([(N - i - (winsize - 1) * mics):mics: (N - i)])';
 		end
 	end
 %	find pseudoinverse of first kb mics
