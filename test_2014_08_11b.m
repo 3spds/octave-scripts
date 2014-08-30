@@ -46,7 +46,7 @@ for alpha=10.^((0:0.5:5)) - 1;
 
     hold off;
 
-    print("-dpng", [directory, "eigs", num2str(index), ".png"]);
+%    print("-dpng", [directory, "eigs", num2str(index), ".png"]);
 
-    save("-text", [directory, "data", num2str(index), ".txt"], "lambdas", "r", "r1", "r2", "r3", "eval", "eval1", "eval2", "eval3", "evec", "evec1", "evec2", "evec3", "order", "mics", "winsize", "alpha");
+%    save("-text", [directory, "data", num2str(index), ".txt"], "lambdas", "r", "r1", "r2", "r3", "eval", "eval1", "eval2", "eval3", "evec", "evec1", "evec2", "evec3", "order", "mics", "winsize", "alpha");
 end

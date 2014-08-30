@@ -13,7 +13,7 @@ function vec = modal_filter(lambdas, Z, W, R)
 %		W - matrix with < length(lambdas) * channels > rows and < channels > columns
 %			describes how the modes couple to the channels
 %		R - forcing function, row vector of any length
-%			this will get scaled by values in Z to give excitation vectors for the modes in each channel
+%			this will get scaled by values in Z to give excitation vectors (rows of F) for the modes in each channel
 
 F = Z*R;
 
@@ -45,7 +45,7 @@ end
 vec = zeros(1, winsize*mics);
 for i=1:mics
 	for j=1:winsize
-		vec((j*mics)+i) = real(bigX(i,j));
+		vec(((j-1)*mics)+i) = real(bigX(i,j));
 	end
 end
 end
