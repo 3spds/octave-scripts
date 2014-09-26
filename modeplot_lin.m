@@ -7,6 +7,8 @@ function modeplot_lin(lambdas, e_val, lines)
 %		lambdas		:	synthesis eigenvalues
 %		e_val		:	analysis eigenvalues
 %       lines       :   draw lines? 0 / 1
+%	plot the unit circle for reference
+
 
 %	plot the synthesis eigenvalues
 polar(angle(lambdas), abs(lambdas), "o1");
@@ -21,9 +23,8 @@ if lines
 polar(angle(e_val), abs(e_val), "-3");
 endif
 
-%	plot the unit circle for reference
 thetas = [0:0.0001:2*pi];
-polar(thetas, ones(length(thetas), 1));
+polar(thetas, ones(length(thetas), 1), ".g");
 
 hold off;
 

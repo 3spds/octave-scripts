@@ -21,5 +21,5 @@ len = length(u1)/mics;
 c_n = zeros(order*mics, len);
 i = 0;
 for i=1:(len-order)
-    c_n(:, i) = pinv(e_vecs) * u1(1+mics*(i-1):(order+i-1)*mics)';
+    c_n(:, i) = inv(e_vecs) * u1(1+mics*(i-1):(order+i-1)*mics)';
 end

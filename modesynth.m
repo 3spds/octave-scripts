@@ -17,11 +17,13 @@ function [vec, lambdas, F, Z, W, R] = modesynth(mics, order, winsize, magscale, 
 kb = mics * order;
 
 %	Z is a vector of length kb that describes how the excitation function couples with the modes
-Z = rand(kb/2, 1)*2-1;
+Z = rand(kb/2, 1).*2-1;
+%Z = sign(Z).*max(Z, 0.1);
 Z = [Z; Z];
 
 %	W is a matrix with kb rows and b cols that describes how the modes couple with the mics
-W = rand(kb/2, mics)*2-1;
+W = rand(kb/2, mics).*2-1;
+%W = sign(W).*max(W, 0.1);
 W = [W; W];
 
 %	lambdas is a vector of kb lambdas. should be in complex conjugate pairs, and lie within the unit circle.

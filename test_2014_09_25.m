@@ -1,0 +1,9 @@
+winsize = 10000;
+mics = 1;
+order = 2;
+mscale = 0.1;
+mshift = 0.7;
+alpha = 0.0000001;
+[vec, lambdas, f, z, w, r] = modesynth(mics, order, winsize, mscale, mshift);
+[residual, evec_n, eval] = modal_residuals(vec, mics, order, winsize, alpha);
+err =  resid_error(residual, r, order)

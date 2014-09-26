@@ -1,15 +1,15 @@
-%   9/5/14
+%   9/9/14
 %       tests eigenvalue
 %
 
-mics = 16;
-order = 1;
+mics = 1;
+order = 16;
 kb = 16;
 winsize = 10000;
 mscale = 0.001;
 mshift = 0.999;
 alpha = 0;
-directory = "/media/joe/Milarepa/experiments/2014_09_08/a/";
+directory = "/media/joe/Milarepa/experiments/2014_09_09/a/";
 trial = 1;
 index = 0;
 
@@ -27,7 +27,7 @@ for mshift = (0.999:0.1:0.999);
     [vec, lambdas, f, z, w, r] = modesynth(mics, order, winsize, mscale, mshift);
     mkdir(directory, num2str(trial));
     %lengthr = length(r)
-    for mics = [1, 2, 4, 6, 8, 10, 12, 14, 16];
+    for mics = [1, 2, 4, 8, 16];
 %        polar(angle(lambdas), abs(lambdas), "o1");
 %        hold on;
 %        polar(angle(diag(lambdas)), abs(diag(lambdas)), "-1");
@@ -56,7 +56,7 @@ for mshift = (0.999:0.1:0.999);
 %            sample_eval = sample_eval + eval;
             new_eval_err = diffpoles(lambdas, diag(eval)', 10000);
             sample_eval_err = sample_eval_err + new_eval_err;
-            new_err = (1-abs(corr(resid(:, 1), r(1, 1+order:end-1))))^2;
+            new_err = (1-abs(corr(resid(1, :), r(1, 1+order:end-1))))^2;
             sample_err = sample_err + new_err;
             save("-text", [directory, num2str(trial), "/data", num2str(index), "_", num2str(sample), ".txt"], "lambdas", "r", "resid", "eval", "evec", "order", "mics", "winsize", "alpha", "new_err", "new_eval_err");
         end
