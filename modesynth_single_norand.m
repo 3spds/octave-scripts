@@ -11,9 +11,11 @@ function [vec, R] = modesynth_single_norand(winsize, lambda)
 %		winsize	: length of output vectors
 %       lambda  : a complex pole
 
-%	R is the forcing function, which is a single vector of length winsize.
-R = rand(1, winsize)*2-1;
+%	R is the forcing function, which is a single complex noise vector of length winsize.
+R_r = rand(1, winsize)*2-1;
+R_i = 1i*rand(1, winsize)*2-1;
 
+R = R_r + R_i;
 %	X is a matrix with kb rows and winsize cols that contains the response of each of the the modal filters to F
 X = zeros(1, winsize);
 

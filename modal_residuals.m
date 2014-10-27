@@ -29,5 +29,5 @@ evec_n = evec ./ enorm;
 c = modal_regression(vec, evec_n, eval, mics, order);
 fhat = inverse_filter(c, eval);
 rhat = evec_n * fhat;
-residual = real(rhat(end-mics+1:end, 1:end-order));
+residual = real(rhat(end-mics+1:end, 1:end));
 end

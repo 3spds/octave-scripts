@@ -1,6 +1,6 @@
 winsize = 10000;
-angle = 0;
-radius = 0;
+angle = 0.1;
+radius = 0.8;
 epsi = 0.0000001;
 [x, y] = pol2cart(angle, radius);
 lambda = x+y*1i;
