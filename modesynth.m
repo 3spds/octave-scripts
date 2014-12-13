@@ -7,6 +7,9 @@ function [vec, lambdas, F, Z, W, R] = modesynth(mics, order, winsize, magscale, 
 %		vec		: a vector of length <winsize> * <mics>
 %		lambdas	: a vector of kb lambdas
 %		F		: a "forcing function" matrix of kb rows and winsize cols
+%       Z       : a vector of length kb
+%       W       : a <kb> * <b> matrix
+%       R       : a vector of length <winsize>
 %------------
 %	arguments:
 %		vec	 	: input vector. "unwrapped" from the matrix of inputs

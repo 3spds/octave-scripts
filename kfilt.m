@@ -25,6 +25,6 @@ P = F * P * F' + Sigma_eps;
 K = P * A' * inv(Sigma_e + A * P * A');
 
 %   correct x_k|k
-x = x + K(b - A * x);
+x = x + K*(b - A * x);
 %   correct P_k|k
 P = P - K * A * P;
