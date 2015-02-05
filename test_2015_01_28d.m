@@ -30,7 +30,7 @@ for thetaIndex = 1:numIRs
         outIrsCol = ifft(outIrsCol);
         outIrs(:, outIrsColIndex) = outIrsCol;
         xThetaString = intTo3Char(mod(theta-1 + (granularity*xFadeIndex), 360));
-        wavwrite(outIrsCol, FS, BPS, ["/home/joe/Documents/space~/svn_drop/impulses/ircam.16.interp1/L_IRC_1002_C_R0195_T", xThetaString, irPathTail]);
+        wavwrite(outIrsCol, FS, BPS, ["/home/joe/Documents/space~/svn_drop/impulses/ircam.16.interp.minPhaseNoClip/L_IRC_1002_C_R0195_T", xThetaString, irPathTail]);
     end
 end
 %test_2015_01_28b
